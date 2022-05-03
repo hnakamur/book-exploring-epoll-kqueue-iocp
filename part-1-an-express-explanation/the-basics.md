@@ -115,7 +115,7 @@ fn main() {
     // We crate 5 requests to an endpoint we control the delay on
     for i in 1..6 {
         // This site has an API to simulate slow responses from a server
-        let addr = "slowwly.robertomurray.co.uk:80";
+        let addr = "flash.siwalik.in:80";
         let mut stream = TcpStream::connect(addr).unwrap();
 
         // The delay is passed in to the GET request as milliseconds.
@@ -124,7 +124,7 @@ fn main() {
         let delay = (5 - i) * 1000;
         let request = format!(
             "GET /delay/{}/url/http://www.google.com HTTP/1.1\r\n\
-             Host: slowwly.robertomurray.co.uk\r\n\
+             Host: flash.siwalik.in\r\n\
              Connection: close\r\n\
              \r\n",
             delay
