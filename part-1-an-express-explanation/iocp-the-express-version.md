@@ -303,7 +303,7 @@ fn main() {
         // This one unsafe we could avoid though but this technique is used
         // in libraries like `mio` and is safe as long as the OS does
         // what it's supposed to.
-        unsafe { events.set_len(res as usize) };
+        unsafe { events.set_len(entries_removed as usize) };
 
         for event in events {
             let operation = unsafe { &*(event.lp_overlapped as *const Operation) };
