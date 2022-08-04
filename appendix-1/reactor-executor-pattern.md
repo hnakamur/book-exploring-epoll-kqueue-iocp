@@ -131,8 +131,8 @@ fn main() {
     let mut executor = Excutor::new(evt_receiver);
 
     // ===== TASK =====
-    let mut stream = TcpStream::connect("slowwly.robertomurray.co.uk:80").unwrap();
-    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: slowwly.robertomurray.co.uk\r\nConnection: close\r\n\r\n";
+    let mut stream = TcpStream::connect("flash.siwalik.in:80").unwrap();
+    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: flash.siwalik.in\r\nConnection: close\r\n\r\n";
 
     stream.write_all(request).expect("Stream write err.");
     reactor.register_stream_read_interest(&mut stream, TEST_TOKEN);
@@ -207,8 +207,8 @@ fn main() {
     let reactor = Reactor::new(evt_sender);
     let mut executor = Excutor::new(evt_receiver);
 
-    let mut stream = TcpStream::connect("slowwly.robertomurray.co.uk:80").unwrap();
-    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: slowwly.robertomurray.co.uk\r\nConnection: close\r\n\r\n";
+    let mut stream = TcpStream::connect("flash.siwalik.in:80").unwrap();
+    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: flash.siwalik.in\r\nConnection: close\r\n\r\n";
 
     stream.write_all(request).expect("Stream write err.");
     reactor.register_stream_read_interest(&mut stream, TEST_TOKEN);
