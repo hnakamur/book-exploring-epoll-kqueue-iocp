@@ -90,7 +90,7 @@ fn main() {
     let queue = unsafe { ffi::kqueue() };
     // We handle errors in this example by just panicking.
     if queue < 0 {
-        panic!(io::Error::last_os_error());
+        panic!("{}", std::io::Error::last_os_error());
     }
 
     // As you'll see below, we need a place to store the streams so they're
@@ -161,7 +161,7 @@ fn main() {
         )};
 
         if res < 0 {
-            panic!(io::Error::last_os_error());
+            panic!("{}", std::io::Error::last_os_error());
         }
 
         // Letting `stream` go out of scope in Rust automatically runs
@@ -196,7 +196,7 @@ fn main() {
         // This result will return the number of events which occurred
         // (if any) or a negative number if it's an error.
         if res < 0 {
-            panic!(io::Error::last_os_error());
+            panic!("{}", std::io::Error::last_os_error());
         };
 
         // This one unsafe we could avoid though but this technique is used
@@ -215,7 +215,7 @@ fn main() {
     // implementation which takes care of this for us.
     let res = unsafe { ffi::close(queue) };
     if res < 0 {
-        panic!(io::Error::last_os_error());
+        panic!("{}", std::io::Error::last_os_error());
     }
     println!("FINISHED");
 }

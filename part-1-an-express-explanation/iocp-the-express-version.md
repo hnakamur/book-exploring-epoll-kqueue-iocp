@@ -160,7 +160,7 @@ fn main() {
         unsafe { ffi::CreateIoCompletionPort(ffi::INVALID_HANDLE_VALUE, 0, ptr::null_mut(), 0) };
     // We handle any error here panicking.
     if (queue as *mut usize).is_null() {
-        panic!(std::io::Error::last_os_error());
+        panic!("{}", std::io::Error::last_os_error());
     }
 
     // As you'll see below, we need a place to store the streams so they're
@@ -209,7 +209,7 @@ fn main() {
         };
 
         if (res as *mut usize).is_null() {
-            panic!(std::io::Error::last_os_error());
+            panic!("{}", std::io::Error::last_os_error());
         }
 
         // crate a zeroed WSAOVERLAPPED struct
@@ -258,7 +258,7 @@ fn main() {
                 // Everything is OK, and we can wait this with GetQueuedCompletionStatus
                 ()
             } else {
-                panic!(std::io::Error::last_os_error());
+                panic!("{}", std::io::Error::last_os_error());
             }
         } else {
             // The socket is already ready so we don't need to queue it
@@ -297,7 +297,7 @@ fn main() {
         };
 
         if res == 0 {
-            panic!(io::Error::last_os_error());
+            panic!("{}", std::io::Error::last_os_error());
         };
 
         // This one unsafe we could avoid though but this technique is used
@@ -317,7 +317,7 @@ fn main() {
     // implementation which takes care of this for us.
     let res = unsafe { ffi::CloseHandle(queue) };
     if res == 0 {
-        panic!(io::Error::last_os_error());
+        panic!("{}", std::io::Error::last_os_error());
     };
     println!("FINISHED");
 }
