@@ -196,7 +196,10 @@ fn main() {
         unsafe { events.set_len(res as usize) };
 
         for event in events {
-            println!("RECEIVED: {:?}", event);
+            let events = unsafe { std::ptr::read_unaligned(std::ptr::addr_of!(event.events)) };
+            let epoll_data =
+                unsafe { std::ptr::read_unaligned(std::ptr::addr_of!(event.epoll_data)) };
+            println!("RECEIVED: events={}, data={}", events, epoll_data);
             event_counter -= 1;
         }
     }
@@ -224,8 +227,7 @@ mod ffi {
         pub fn epoll_wait(epfd: i32, events: *mut Event, maxevents: i32, timeout: i32) -> i32;
     }
 
-    #[derive(Debug)]
-    #[repr(C)]
+    #[repr(C, packed)]
     pub struct Event {
         pub(crate) events: u32,
         pub(crate) epoll_data: usize,
