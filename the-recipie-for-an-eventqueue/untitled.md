@@ -199,8 +199,8 @@ fn proposed_api() {
     let mut reactor = Reactor::new(evt_sender);
     let mut executor = Excutor::new(evt_receiver);
 
-    let mut stream = TcpStream::connect("slowwly.robertomurray.co.uk:80").unwrap();
-    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: slowwly.robertomurray.co.uk\r\nConnection: close\r\n\r\n";
+    let mut stream = TcpStream::connect("flash.siwalik.in:80").unwrap();
+    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: flash.siwalik.in\r\nConnection: close\r\n\r\n";
 
     stream.write_all(request).expect("Stream write err.");
 
@@ -221,7 +221,7 @@ fn proposed_api() {
 **The interesting lines here are:**
 
 ```rust
-let mut stream = TcpStream::connect("slowwly.robertomurray.co.uk:80").unwrap();
+let mut stream = TcpStream::connect("flash.siwalik.in:80").unwrap();
 let registrator = reactor.registrator();
 registrator.register(&mut stream, TEST_TOKEN, Interests::READABLE).expect("...");
 registrator.close_loop().expect("close loop err.");
@@ -262,8 +262,8 @@ fn proposed_api() {
     let mut reactor = Reactor::new(evt_sender);
     let mut executor = Excutor::new(evt_receiver);
 
-    let mut stream = TcpStream::connect("slowwly.robertomurray.co.uk:80").unwrap();
-    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: slowwly.robertomurray.co.uk\r\nConnection: close\r\n\r\n";
+    let mut stream = TcpStream::connect("flash.siwalik.in:80").unwrap();
+    let request = b"GET /delay/1000/url/http://www.google.com HTTP/1.1\r\nHost: flash.siwalik.in\r\nConnection: close\r\n\r\n";
 
     stream.write_all(request).expect("Stream write err.");
 
